@@ -9,6 +9,10 @@ library HexGridUtils {
         int8 s;
     }
 
+    function abs(int8 x) internal pure returns (uint8) {
+        return x >= 0 ? uint8(x) : uint8(-x);
+    }
+
     // @dev uses half of cubic distance method
     // @gas 5718
     function distance(
@@ -32,16 +36,16 @@ library HexGridUtils {
         return longest > vec_s ? longest : vec_s;
     }
 
-    function abs(int8 x) internal pure returns (uint8) {
-        return x >= 0 ? uint8(x) : uint8(-x);
-    }
-
+    // @gas 2757
     function isValidTile(Tile memory tile) internal pure returns (bool) {
         return (tile.q + tile.r + tile.s == 0);
     }
 
+    // @gas 5632
     function isAdjacent(
         Tile memory x,
         Tile memory y
-    ) internal pure returns (bool) {}
+    ) internal pure returns (bool) {
+        return (distance2(x, y) == 1);
+    }
 }
