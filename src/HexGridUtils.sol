@@ -7,6 +7,7 @@ library HexGridUtils {
         int8 q;
         int8 r;
         int8 s;
+        int8 weight;
     }
 
     function abs(int8 x) internal pure returns (uint8) {

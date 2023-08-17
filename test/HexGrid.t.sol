@@ -13,15 +13,14 @@ contract HexGridUtilsTest is Test {
     HexGridUtils.Tile public tileInvalid;
 
     function setUp() public {
-        tileA = HexGridUtils.Tile(0, 0, 0);
-        tileB = HexGridUtils.Tile(-2, 4, -2);
-        tileC = HexGridUtils.Tile(1, -1, 0);
+        tileA = HexGridUtils.Tile(0, 0, 0, 0);
+        tileB = HexGridUtils.Tile(-2, 4, -2, 0);
+        tileC = HexGridUtils.Tile(1, -1, 0, 0);
 
-        tileInvalid = HexGridUtils.Tile(1, 1, 1);
+        tileInvalid = HexGridUtils.Tile(1, 1, 1, 0);
     }
 
     function test_distance() public {
-        // uint8 distance = HexGridUtils.distance(tileA, tileB);
         uint8 distance = tileA.distance(tileB);
         assertEq(distance, 4);
     }
@@ -33,7 +32,7 @@ contract HexGridUtilsTest is Test {
 
     function test_validTile() public {
         bool isValid = tileInvalid.isValidTile();
-        // assertFalse(isValid);
+        assertFalse(isValid);
     }
 
     function test_isAdjacentTile() public {
@@ -43,6 +42,6 @@ contract HexGridUtilsTest is Test {
 
     function test_notAdjacentTile() public {
         bool isAdjacent = tileA.isAdjacent(tileB);
-        assertTrue(isAdjacent);
+        assertFalse(isAdjacent);
     }
 }
